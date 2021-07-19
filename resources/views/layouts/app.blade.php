@@ -10,16 +10,21 @@
 <body class="bg-gray-200">
     <nav class="p-6 mb-6 bg-white flex justify-between">
         <ul class="flex items-center">
-            <li><a href="" class="p-3" >Home</a></li>
-            <li><a href="" class="p-3" >Dashboard</a></li>
+            <li><a href="/" class="p-3" >Home</a></li>
+            <li><a href="{{ route('dashboard') }}" class="p-3" >Dashboard</a></li>
             <li><a href="" class="p-3" >Posts</a></li>
         </ul>
 
         <ul class="flex items-center">
 
             @auth
-                <li><a href="" class="p-3" >Muhammad Buhari</a></li>
-                <li><a href="{{ route('logout') }}" class="p-3" >Logout</a></li>
+                <li><a href="" class="p-3" >{{ auth()->user()->name }}</a></li>
+                <li>
+                    <form action="{{ route('logout') }}" method="post" class="inline" >
+                        @csrf
+                        <button type="submit" >Logout</button>
+                    </form>
+                </li>
             @endauth
 
             @guest
